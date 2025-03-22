@@ -1,7 +1,7 @@
-# End-user versioning 0.1.0 - Summary
+# End-user versioning 0.2.0 - Summary
 
-Given a version number COMPMAJOR.MINOR.PATCH (eg. A4.2.1):
-* Versions with the same COMP must be fully compatible with eachother.
+Given a version number COMPMAJOR.MINOR.PATCH (e.g., A4.2.1):
+* Versions with the same COMP must be fully compatible with each other.
 * Increment MAJOR when new systems are added.
 * Increment MINOR when introducing new features, functionality, content, to already existing systems in your program.
 * Increment PATCH when fixing bugs, tweaking features.
@@ -9,7 +9,7 @@ Given a version number COMPMAJOR.MINOR.PATCH (eg. A4.2.1):
 
 # Introduction
 
-The world of software development and management has the Semantic Versioning system as its de-facto standard for giving versions to programs with a defined public API.
+Semantic Versioning is the de facto standard in software development and management for giving versions to programs with a public API.
 
 However, by definition, you cannot use Semantic Versioning for software without a public API, and almost all programs and games do not do that. So I adapted SemVer for versioning programs for the end-user, not for other developers. I call the new system End-user Versioning, EuVer.
 
@@ -28,10 +28,10 @@ End-user versioning is versioned using Semantic Versioning 2.0.0.
 3. Once a versioned package has been released, the contents of that version MUST NOT be modified. Any modifications MUST be released as a new version.
 4. Any version number without \<C> is reserved for initial development. Anything MAY change at any time. Data files between versions MAY NOT be interchangeable.
 5. When the software exits initial development, \<C> MUST be set to "A", and X.Y.Z to 1.0.0. This is the only time X.Y.Z can be reset.
-6. Patch version Z (\<c>x.y.Z) MUST be incremented if only bug fixes or feature tweaks are introduced. A bug fix is defined as an internal change that fixes incorrect behavior. A feature tweak is defined as a small change to only one feature. Eg. changing prices of in-game items.
-7. Minor version Y (\<c>x.Y.z) MUST be incremented if new features or content is introduced to the software. It MUST be incremented if any feature or content is removed. It MAY be incremented if multiple feature tweaks are introduced. It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented. A feature is defined as any element of software that is available to users. Eg. Mining out blocks in Minecraft.
-8. Major version X (\<c>X.y.z) MUST be incremented if \<C> changes or when new feature systems are added or removed. It MAY also include minor and patch level changes. Patch and minor versions MUST be reset to 0 when major version is incremented. A feature system is defined as multiple features that are interconnected, similar in nature. Eg. The physics of props in Counter-Strike: Source is a feature system, as it connects multiple features of props: ability to be picked up, collision with bullets, rolling, standing still, collision with players etc.
-9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are compatible with eachother. Two versions are compatible when either one can successfully read data from the other. If a version is not compatible with any other, \<C> MUST change to an unused series of uppercase letters. If a version is compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order, of a compatible version.
+6. Patch version Z (\<c>x.y.Z) MUST be incremented if only bug fixes or feature tweaks are introduced. A bug fix is defined as an internal change that fixes incorrect behavior. A feature tweak is defined as a small change to only one feature. E.g., changing prices of in-game items.
+7. Minor version Y (\<c>x.Y.z) MUST be incremented if new features or content is introduced to the software. It MUST be incremented if any feature or content is removed. It MAY be incremented if multiple feature tweaks are introduced. It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented. A feature is defined as any element of software that is available to users. E.g., Mining out blocks in Minecraft.
+8. Major version X (\<c>X.y.z) MUST be incremented if \<C> changes or when new feature systems are added or removed. It MAY also include minor and patch level changes. Patch and minor versions MUST be reset to 0 when major version is incremented. A feature system is defined as multiple features that are interconnected, similar in nature. E.g., The physics of props in Counter-Strike: Source is a feature system, as it connects multiple features of props: ability to be picked up, collision with bullets, rolling, standing still, collision with players etc.
+9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are compatible with each other. Two versions are compatible when the one with higher precedence can successfully read data from the one with lower. If a version is not compatible with any other, \<C> MUST change to an unused series of uppercase letters. If a version is compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order, of a compatible version.
 10. A pre-release version MAY be denoted by appending a hyphen and a series of dot-separated identifiers immediately following the patch version. Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]. Identifiers MUST NOT be empty. Identifiers MUST NOT consist of only hyphens. Numeric identifiers MUST NOT include leading zeroes. Pre-release versions have a lower precedence than the associated normal version. A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version. Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.
 11. Read-write compatibility MAY be denoted by adding an equal sign, followed by a string of uppercase and lowercase characters and the character '>', immediately after the patch or pre-release version. The string of characters must follow those rules:
 * 1. The string of characters MUST consist of existing \<C> tags.
@@ -42,7 +42,7 @@ End-user versioning is versioned using Semantic Versioning 2.0.0.
 * 6. You SHOULD NOT omit any versions that fulfill rules 4. and 5.
 * 7. You MUST NOT use a \<C> tag for the current version, if you end up with the another tag on both sides of it. Example: a>B>a. This means B is compatible with A, and A MUST be used for the current version instead
 * 8. Example: The version BD9.2.1-alpha=b>d>BD>a can successfully read data from versions with COMP B and D, and versions with COMP A can successfully read data from BD.
-* 9. If a version with a given COMP tag (e.g., COMP B) is released, and it is determined that a previous version (e.g., COMP A) can read data from the new version, but the initial release of COMP A does not contain the appropriate Read-Write (RW) compatibility information (e.g., =A>b), the following steps apply:
+* 9. If a version with a given COMP tag (e.g., COMP B) is released, and it is determined that a previous version (e.g., COMP A) can read data from the new version, but the initial release of COMP A does not contain the appropriate read-write (RW) compatibility information (e.g., =A>b), the following steps apply:
 * * 1. Do not modify the original version: The version number of COMP A should not be altered solely to include the new RW compatibility. This ensures that previous version releases remain consistent with the established versioning policy and history.
 * * 2. Release a new version with updated RW compatibility: A new version of COMP A may be released (e.g., A1.0.1) with the appropriate RW compatibility declaration (e.g., =A>b). The patch version should be incremented to reflect the update.
 * * 3. Example: If the first version released is A1.0.0 and the second version is B2.3.1, with RW compatibility B2.3.1=B>a, a new version A1.0.1 may be released with the updated RW compatibility section (=A>b), thereby ensuring that both versions are marked as compatible while preserving version history.
@@ -62,15 +62,30 @@ End-user versioning is versioned using Semantic Versioning 2.0.0.
 
 # Why use EuVer?
 
-While SemVer has a very concrete and important problem to solve, EuVer does not. Does this mean EuVer is useless, and everyone should use whatever versioning system they want? At least with the first part, I don't agree.
+While SemVer has a very concrete and important problem to solve, EuVer does not. Does this mean EuVer is useless, and everyone should simply use their own versioning system? I disagree.
 
 EuVer provides a versioning system that hopefully could be applied to 99% of games and programs available. The compatibility system should be flexible enough, so that it can be barely used or be very comprehensive about different versions compatibility.
 
 I do not expect my versioning system to be used as universally as SemVer. I do not think my system is better than yours, you may be in a situation where you make a simple game, and all you need is a simple version counter (v1, v2 etc.). I personally tried a few times to find "SemVer for games" online, and found barely anything. So I have written this system so that I can refer to it in my projects, and if somehow anyone finds it and decides this fits their needs, I'll be happy.
 
-I will respond to any questions asked in discussions or issues, and if one question repeats itself multiple times, I'll add it to the FAQ.
+I will respond to any questions asked in discussions or issues, and if one question repeats itself multiple times, I'll add it to the FAQ. If you have any ideas on how to edit EuVer to make it more concise, formal, technical (especially the definition of a feature tweak, feature and feature system), please open a pull request and I will look through it.
 
-# Credits
+# FAQ
+
+### How to start a project using EuVer?
+Start with version 0.1.0 and increment accordingly to specification. When ready, release A1.0.0. This is the only time you will reset MAJOR.
+
+### How do I know when to release A1.0.0?
+When you feel that the data files your program operates on are more-or-less set, you can go A1.0.0. Remember, if a newer version can convert data from an older version, it can be the same COMP.
+
+### If even the tiniest change to reading data makes two versions incompatible, won't I end up at HKG4.2.1 very quickly?
+When we look at Minecraft we can see that it is possible to make a game that can read game files from 10 years ago. It is your responsibility to make your user be able to access data they created long ago.
+
+### What do I do if I accidentally release a incompatible change to an incorrect COMP?
+Fix the problem and release a new version that corrects the change, or makes a new COMP. Even now, do not modify the offending release. Immidietly inform your users about this version. This is a serious risk, and can cause users to lose important data.
+
+
+# About
 Big thanks to [everyone who created](https://github.com/semver/semver/graphs/contributors) and maintained [SemVer 2.0.0](https://semver.org). I modified their versioning system a little, but the bulk of my specification is still their work.
 
 This versioning system is licensed under the [CC 4.0 license](https://creativecommons.org/licenses/by/4.0/).
