@@ -1,4 +1,4 @@
-# End-user versioning 0.5.0 - Summary
+# End-user versioning 0.5.1 - Summary
 
 Given a version number COMPMAJOR.MINOR.PATCH (e.g., A4.2.1):
 * COMP (uppercase or lowercase letters) denotes compatibility. Versions with the same COMP MUST be backward compatible. Lowercase COMP indicates forward compatibility with the most recent previous version.
@@ -80,11 +80,10 @@ Start with version 0.1.0 and increment accordingly to specification. When ready,
 When you feel that the data files your program operates on are more-or-less set, you can go A1.0.0. Remember, if a newer version can convert data from an older version, it is the same COMP.
 
 ### If even the tiniest change to reading data makes two versions incompatible, won't I end up at HKG4.2.1 very quickly?
-When we look at Minecraft we can see that it is possible to make a game that can read game files from 10 years ago. It is your responsibility to make your user be able to access data they created long ago.
+When we look at Minecraft we can see that it is possible to make a game that can read game files from 10 years ago. Many software projects (including games like Minecraft) maintain compatibility by using automatic migration scripts, or fallback mechanisms. It is your responsibility to ensure that users can access their old data. Careful planning and testing can help avoid frequent COMP changes.
 
-### What do I do if I accidentally release a incompatible change to an incorrect COMP?
+### What if I mistakenly release an incompatible change without updating COMP?
 Fix the problem and release a new version that corrects the change, or makes a new COMP. Even now, do not modify the offending release. Immediately inform your users about this version. This is a serious risk, and can cause users to lose important data.
-
 
 # About
 Big thanks to [everyone who created](https://github.com/semver/semver/graphs/contributors) and maintained [SemVer 2.0.0](https://semver.org). I modified their versioning system a little, but the bulk of my specification is still their work.
