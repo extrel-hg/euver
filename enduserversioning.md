@@ -1,4 +1,4 @@
-# End-user versioning 0.3.0 - Summary
+# End-user versioning 0.3.1 - Summary
 
 Given a version number COMPMAJOR.MINOR.PATCH (e.g., A4.2.1):
 * A version with higher precedence must be backward compatible with versions with the same COMP and lower precedence.
@@ -48,6 +48,7 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 * 10. You MUST NOT update RW compatibility in already released versions. This is prohibited by rule 3. of the specifications. You MAY release a new version with an incremented PATCH number, that contains updated RW compatibility.
 * * * Example: A1.0.0, A2.0.0, B3.0.0=a>B. You MAY release version A2.0.1=A>b3.0.0 
 * 9. Example: The version BD9.2.1-alpha=b>d>BD>a can successfully read data from versions with COMP B and D, and versions with COMP A can successfully read data from BD. This is assuming versions with COMP A, B and D all are the highest precedence that is still lower than BD9.2.1-alpha=b>d>BD>a.
+* 10. RW compatibility system is complex, and you do not need to use it in your versioning. Simply stating what versions the current version can read files from, in for example the README file, may be good enough for you.
 12. Build metadata MAY be denoted by appending a plus sign and a series of dot-separated identifiers immediately following the patch, pre-release version or read-write compatibility. Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]. Identifiers MUST NOT be empty. Identifiers MUST NOT consist of only hyphens. Build metadata MUST be ignored when determining version precedence. Thus two versions that differ only in the build metadata, have the same precedence. Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3-117B344092BD.
 12. Precedence refers to how versions are compared to each other when ordered.
 * 1. Precedence MUST be calculated by separating the version into major, minor, patch and pre-release identifiers in that order (Build metadata, comp tag, RW compatibility does not figure into precedence).
@@ -78,7 +79,7 @@ I will respond to any questions asked in discussions or issues, and if one quest
 Start with version 0.1.0 and increment accordingly to specification. When ready, release A1.0.0. This is the only time you will reset MAJOR.
 
 ### How do I know when to release A1.0.0?
-When you feel that the data files your program operates on are more-or-less set, you can go A1.0.0. Remember, if a newer version can convert data from an older version, it can be the same COMP.
+When you feel that the data files your program operates on are more-or-less set, you can go A1.0.0. Remember, if a newer version can convert data from an older version, it is the same COMP.
 
 ### If even the tiniest change to reading data makes two versions incompatible, won't I end up at HKG4.2.1 very quickly?
 When we look at Minecraft we can see that it is possible to make a game that can read game files from 10 years ago. It is your responsibility to make your user be able to access data they created long ago.
