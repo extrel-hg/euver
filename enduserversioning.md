@@ -1,11 +1,10 @@
-# End-user versioning 0.3.1 - Summary
+# End-user versioning 0.4.0 - Summary
 
 Given a version number COMPMAJOR.MINOR.PATCH (e.g., A4.2.1):
-* A version with higher precedence must be backward compatible with versions with the same COMP and lower precedence.
-* Increment MAJOR when new systems are added.
-* Increment MINOR when introducing new features, functionality, content, to already existing systems in your program.
-* Increment PATCH when fixing bugs, tweaking features.
-* COMP consists of capital letters. MAJOR, MINOR, PATCH consists of non-negative integers, MUST NOT contain leading zeroes, and when incrementing a version, set all following fields to 0.
+* COMP (uppercase or lowercase letters) denotes compatibility. Versions with the same COMP are backward compatible. Lowercase COMP indicates forward compatibility with the most recent previous version.
+* MAJOR changes when new feature systems are added or removed.
+* MINOR increments when new features or content are added to existing systems.
+* PATCH updates for bug fixes and feature tweaks.
 
 # Introduction
 
@@ -31,24 +30,21 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 6. Patch version Z (\<c>x.y.Z) MUST be incremented if only bug fixes or feature tweaks are introduced. A bug fix is defined as an internal change that fixes incorrect behavior. A feature tweak is defined as a small change to only one feature. E.g., changing prices of in-game items.
 7. Minor version Y (\<c>x.Y.z) MUST be incremented if new features or content is introduced to the software. It MUST be incremented if any feature or content is removed. It MAY be incremented if multiple feature tweaks are introduced. It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented. A feature is defined as any element of software that is available to users. E.g., Mining out blocks in Minecraft.
 8. Major version X (\<c>X.y.z) MUST be incremented if \<C> changes or when new feature systems are added or removed. It MAY also include minor and patch level changes. Patch and minor versions MUST be reset to 0 when major version is incremented. A feature system is defined as multiple features that are interconnected, similar in nature. E.g., The physics of props in Counter-Strike: Source is a feature system, as it connects multiple features of props: ability to be picked up, collision with bullets, rolling, standing still, collision with players etc.
-9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are backward compatible with each other. Two versions are backward compatible when the one with higher precedence can successfully read data from the one with lower. If a version is not backward compatible with any other, \<C> MUST change to an unused series of uppercase letters. If a version is compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order, of a compatible version.
+9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are backward compatible with each other. Two versions are backward compatible when the one with higher precedence can successfully read data from the one with lower. If a version is not backward compatible with any other, \<C> MUST change to an unused series of uppercase letters. If a version is backward compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order, of a compatible version. If the previous version with the same \<C> is forward compatible with the current one, write \<C> in lowercase.
 10. A pre-release version MAY be denoted by appending a hyphen and a series of dot-separated identifiers immediately following the patch version. Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]. Identifiers MUST NOT be empty. Identifiers MUST NOT consist of only hyphens. Numeric identifiers MUST NOT include leading zeroes. Pre-release versions have a lower precedence than the associated normal version. A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version. Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.
 11. Read-write compatibility MAY be denoted by adding an equal sign, followed by a string of uppercase and lowercase characters, digits, and the characters ">", ".", "-", immediately after the patch or pre-release version. The string of characters must follow those rules:
 * 1. The string of characters MUST consist of existing \<C> tags or version numbers.
 * 2. Each \<C> or version number must be separated by the ">" character.
 * 3. All <C> tags MUST be written in lowercase, except for the current version's tag.
-* 4. To the left of the current versions tag you MUST put only the \<C> tag of versions, that the current version can successfully read data from, and save it in the current version format. The \<C> refers to the version with highest precedence, that is still lower than the current version. For example, given the versions A1.0.0, A1.1.0, B2.0.0=a>B, A3.0.0, in version B2.0.0=a>B we refer to the latest version of A with a lower precedence than B2.0.0
+* 4. To the left of the current versions tag you MUST put only the \<C> tag of versions, that the current version can successfully read data from, and save it in the current version format. The \<C> refers to the version with highest precedence, that is still lower than the current version. For example, given the versions A1.0.0, A1.1.0, B2.0.0=a>B, A3.0.0, in version B2.0.0=a>B we refer to the latest version of A with a lower precedence than B2.0.0 (A1.1.0).
 * 5. To the right of the current versions tag you MUST put only the \<C> tag of versions, that can successfully read and save data written by the current version. We maintain the reference rules outlined in 4.
 * 6. You SHOULD NOT omit any \<C> tags that fulfill rules 4. or 5.
 * 7. You MUST NOT use a \<C> tag for the current version, if you end up with the another tag on both sides of it. Example: B2.0.0=a>B>a. This means the newest version of A can read B2.0.0, and vice versa. You MUST use A instead.
-* 8. You MAY put a \<C> tag of the current version on the right side of the current version. This signals that the current version's files can be read by the earlier version. For example, when given versions A1.0.0, A1.1.0, A1.2.0, A2.0.0=A>a:
-* * * All of them are backward compatible with previous ones.
-* * * A1.2.0 can read files from A2.0.0.
-* 9. You MAY denote an exact version number on either side of the current version. This SHOULD be used sparingly. Example: A1.0.0, A2.0.0, B2.0.0=a1.0.0>B, B2.0.1, B2.1.0=B>b2.0.0
+* 8. You MAY denote an exact version number on either side of the current version. This SHOULD be used sparingly. Example: A1.0.0, A2.0.0, B2.0.0=a1.0.0>B, B2.0.1, B2.1.0=B>b2.0.0
+* 9. You MAY denote a range of versions on either side of the current version. This SHOULD be used sparingly. The range must be separated by ">>". Example: B2.1.0=B>a1.0.0>>a2.0.0.
 * 10. You MUST NOT update RW compatibility in already released versions. This is prohibited by rule 3. of the specifications. You MAY release a new version with an incremented PATCH number, that contains updated RW compatibility.
 * * * Example: A1.0.0, A2.0.0, B3.0.0=a>B. You MAY release version A2.0.1=A>b3.0.0 
-* 9. Example: The version BD9.2.1-alpha=b>d>BD>a can successfully read data from versions with COMP B and D, and versions with COMP A can successfully read data from BD. This is assuming versions with COMP A, B and D all are the highest precedence that is still lower than BD9.2.1-alpha=b>d>BD>a.
-* 10. RW compatibility system is complex, and you do not need to use it in your versioning. Simply stating what versions the current version can read files from, in for example the README file, may be good enough for you.
+* 11. RW compatibility system is complex, and you do not need to use it in your versioning. Simply stating what versions the current version can read files from, in for example the README file, may be good enough for you. I have made this system flexible enough, so that you are not required to use all of its features. Most projects will probably need one or two \<C> tags, and probably won't need to use RW compatibility.
 12. Build metadata MAY be denoted by appending a plus sign and a series of dot-separated identifiers immediately following the patch, pre-release version or read-write compatibility. Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]. Identifiers MUST NOT be empty. Identifiers MUST NOT consist of only hyphens. Build metadata MUST be ignored when determining version precedence. Thus two versions that differ only in the build metadata, have the same precedence. Examples: 1.0.0-alpha+001, 1.0.0+20130313144700, 1.0.0-beta+exp.sha.5114f85, 1.0.0+21AF26D3-117B344092BD.
 12. Precedence refers to how versions are compared to each other when ordered.
 * 1. Precedence MUST be calculated by separating the version into major, minor, patch and pre-release identifiers in that order (Build metadata, comp tag, RW compatibility does not figure into precedence).
