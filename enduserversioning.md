@@ -32,7 +32,7 @@ End-user versioning is versioned using Semantic Versioning 2.0.0.
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.
 
 1. Software using End-user versioning MUST be meant for usage by the end-user. If a public API is provided, it MUST follow Semantic Versioning 2.0.0. An example of a public API is a modding system for your game.
-2. A normal version number MUST take the form \<C>X.Y.Z or X.Y.Z, where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes. \<C> MUST be a series of uppercase letters. X is the major version, Y is the minor version, and Z is patch version. X,Y and Z MUST increase numerically.
+2. A normal version number MUST take the form \<C>X.Y.Z or X.Y.Z, where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes. \<C> MUST be a series of english alphabet letters. X is the major version, Y is the minor version, and Z is patch version. X,Y and Z MUST increase numerically.
 3. Once a versioned package has been released, the contents of that version MUST NOT be modified. Any modifications MUST be released as a new version.
 4. Any version number without \<C> is reserved for initial development. Anything MAY change at any time. Data files between versions MAY NOT be interchangeable.
 5. When the software exits initial development, \<C> MUST be set to "A", and X.Y.Z to 1.0.0. This is the only time X.Y.Z can be reset.
