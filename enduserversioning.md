@@ -1,4 +1,4 @@
-# End-user versioning 0.5.2 - Summary
+# End-user versioning 0.6.0 - Summary
 
 Given a version number COMPMAJOR.MINOR.PATCH (e.g., A4.2.1):
 * COMP (uppercase or lowercase letters) denotes compatibility. Versions with the same COMP MUST be backward compatible. Lowercase COMP indicates forward compatibility with the most recent previous version.
@@ -24,6 +24,9 @@ I have included an optional set of rules (Rule 11.) for more precisely describin
 4. A feature is defined as a distinct, self-contained functionality or content available to the end user.
 5. A feature tweak is defined as a minor modification to a single feature, that does not change its core functionality.
 6. A feature system is defined as a collection of interconnected features that function together and rely on each other to form a cohesive unit.
+7. Previous version is defined as a version with the highest precedence, that is still lower than the version that is being talked about.
+8. Next version is defined as a version with the lowest precedence, that is still higher than the version that is being talked about.
+* Example: given the versions A1.0.0, A2.0.0, A3.0.0, the next version of A2.0.0 is A3.0.0, and the previous version of A2.0.0 is A1.0.0.
 
 # Specification
 
@@ -32,14 +35,14 @@ End-user versioning is versioned using Semantic Versioning 2.0.0.
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119.
 
 1. Software using End-user versioning MUST be meant for usage by the end-user. If a public API is provided, it MUST follow Semantic Versioning 2.0.0. An example of a public API is a modding system for your game.
-2. A normal version number MUST take the form \<C>X.Y.Z or X.Y.Z, where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes. \<C> MUST be a series of english alphabet letters. X is the major version, Y is the minor version, and Z is patch version. X,Y and Z MUST increase numerically.
+2. A normal version number MUST take the form \<C>X.Y.Z or X.Y.Z, where X, Y, and Z are non-negative integers, and MUST NOT contain leading zeroes. \<C> MUST be a series of english alphabet letters. X is the major version, Y is the minor version, and Z is patch version. X,Y and Z MUST increase numerically, with the exception of moving from initial development to full release.
 3. Once a versioned package has been released, the contents of that version MUST NOT be modified. Any modifications MUST be released as a new version.
 4. Any version number without \<C> is reserved for initial development. Anything MAY change at any time. Data files between versions MAY NOT be interchangeable.
-5. When the software exits initial development, \<C> MUST be set to "A", and X.Y.Z to 1.0.0. This is the only time X.Y.Z can be reset.
+5. When the software exits initial development, \<C> MUST be set to a valid COMP, and X.Y.Z to 1.0.0. This is the only time X.Y.Z can be reset.
 6. Patch version Z (\<c>x.y.Z) MUST be incremented if only bug fixes or feature tweaks are introduced.
 7. Minor version Y (\<c>x.Y.z) MUST be incremented if new features or content is introduced to the software. It MUST be incremented if any feature or content is removed. It MAY be incremented if multiple feature tweaks are introduced. It MAY include patch level changes. Patch version MUST be reset to 0 when minor version is incremented.
-8. Major version X (\<c>X.y.z) MUST be incremented if \<C> changes or when new feature systems are added or removed. It MAY also include minor and patch level changes. Patch and minor versions MUST be reset to 0 when major version is incremented.
-9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are backward compatible with each other. If a version is not backward compatible with any other, \<C> MUST change to an unused series of uppercase letters. If a version is backward compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order, of a compatible version. If the previous version with the same \<C> is forward compatible with the current one, write \<C> in lowercase.
+8. Major version X (\<c>X.y.z) MUST be incremented if \<C> changes or when new feature systems are added or removed. It MAY include minor and patch level changes. Patch and minor versions MUST be reset to 0 when major version is incremented.
+9. COMP (\<C>) (\<C>x.y.z) MUST be the same between all version numbers that are backward compatible with each other. If a version is not backward compatible with any other, \<C> MUST change to an unused series of letters. If a version is backward compatible with multiple other versions, \<C> MUST be changed to the \<C>, that is lowest in alphabetical order. If the previous version with the same \<C> is forward compatible with the current one, write \<C> in lowercase.
 10. A pre-release version MAY be denoted by appending a hyphen and a series of dot-separated identifiers immediately following the patch version. Identifiers MUST comprise only ASCII alphanumerics and hyphens [0-9A-Za-z-]. Identifiers MUST NOT be empty. Identifiers MUST NOT consist of only hyphens. Numeric identifiers MUST NOT include leading zeroes. Pre-release versions have a lower precedence than the associated normal version. A pre-release version indicates that the version is unstable and might not satisfy the intended compatibility requirements as denoted by its associated normal version. Examples: 1.0.0-alpha, 1.0.0-alpha.1, 1.0.0-0.3.7, 1.0.0-x.7.z.92, 1.0.0-x-y-z.
 11. Read-write compatibility MAY be denoted by adding an equal sign, followed by a string of uppercase and lowercase characters, digits, and the characters ">", ".", "-", immediately after the patch or pre-release version. The string of characters must follow those rules:
 * 1. The string of characters MUST consist of existing \<C> tags or version numbers.
